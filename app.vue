@@ -2,25 +2,30 @@
   <div>
     hi?
     <video id="videoContext">The video will be displayed here</video>
+    <!-- <div id="videoContext">The video will be displayed here</div> -->
     bye
   </div>
 </template>
 
-<script setup>
-const videoContext = ref(null);
-onMounted(() => {
-  const { $voplayer } = useNuxtApp();
-  console.log("$voplayer", $voplayer);
+<script>
+export default {
+  setup() {
+    return {};
+  },
+  mounted() {
+    const playerConfig = {
+      // START LICENSE
+      license: "INSERT VOPLAYER LICENSE HERE",
+      // END LICENSE
+      // qualityLevelFormater: formatQualityLevelForDisplay,
+      // textTrackDisplayFormater: formatTextTrackForDisplay,
+      // audioTrackDisplayFormater: formatAudioTrackForDisplay,
+    };
 
-  const playerConfig = {
-    // START LICENSE
-    license: "INSERT VOPLAYER LICENSE HERE",
-    // END LICENSE
-    // qualityLevelFormater: formatQualityLevelForDisplay,
-    // textTrackDisplayFormater: formatTextTrackForDisplay,
-    // audioTrackDisplayFormater: formatAudioTrackForDisplay,
-  };
-
-  $voplayer.createPlayer(videoContext, playerConfig);
-});
+    const videoContext = document.getElementById("videoContext");
+    console.log("videoContext", videoContext);
+    console.log("this.$voplayer", this.$voplayer);
+    this.$voplayer.createPlayer(videoContext, playerConfig);
+  },
+};
 </script>
